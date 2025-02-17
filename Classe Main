@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Biblioteca biblioteca = new Biblioteca();
+
+        while (true) {
+            System.out.println("\n--- Menu Biblioteca ---");
+            System.out.println("1. Cadastrar Usuário");
+            System.out.println("2. Cadastrar Livro");
+            System.out.println("3. Listar Livros");
+            System.out.println("4. Emprestar Livro");
+            System.out.println("5. Devolver Livro");
+            System.out.println("6. Sair");
+            System.out.print("Escolha uma opção: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    System.out.print("Nome: ");
+                    String nome = scanner.nextLine();
+                    System.out.print("CPF: ");
+                    String cpf = scanner.nextLine();
+                    biblioteca.cadastrarUsuario(nome, cpf);
+                    break;
+                case 2:
+                    System.out.print("Título do livro: ");
+                    String titulo = scanner.nextLine();
+                    System.out.print("Autor: ");
+                    String autor = scanner.nextLine();
+                    biblioteca.cadastrarLivro(titulo, autor);
+                    break;
+                case 3:
+                    biblioteca.listarLivros();
+                    break;
+                case 4:
+                    System.out.print("CPF do Usuário: ");
+                    String cpfUsuario = scanner.nextLine();
+                    System.out.print("Título do Livro: ");
+                    String tituloLivro = scanner.nextLine();
+                    biblioteca.emprestarLivro(cpfUsuario, tituloLivro);
+                    break;
+                case 5:
+                    System.out.print("Título do Livro: ");
+                    String tituloDevolucao = scanner.nextLine();
+                    biblioteca.devolverLivro(tituloDevolucao);
+                    break;
+                case 6:
+                    System.out.println("Saindo...");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        }
+    }
+}
